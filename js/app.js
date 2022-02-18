@@ -3,7 +3,7 @@
 function deposit(){
     let depositAmount = parseFloat(document.getElementById('deposit-input').value);
 
-    if(isNaN(depositAmount)){
+    if(isNaN(depositAmount) || depositAmount < 0){
         depositAmount = 0;
         document.getElementById('error1').classList.remove ('d-none');
         document.getElementById('deposit-input').value = '';
@@ -23,7 +23,7 @@ function deposit(){
 
 function coinCount(coinInput , coin){
     let coinqty =  parseFloat(document.getElementById(coinInput).value);
-    if(isNaN(coinqty)){
+    if(isNaN(coinqty) || coinqty < 0){
         coinqty = 0;
         document.getElementById('error2').classList.remove ('d-none');
         document.getElementById(coinInput).value = '';
