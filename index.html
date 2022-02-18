@@ -13,7 +13,7 @@
   <body>
 
     
-    <div class="w-75 text-center mx-auto py-5">
+    <div class=" text-center mx-auto py-5">
 
         <!-- trading portfolio section  -->
         <div >
@@ -25,12 +25,13 @@
         </div>
 
         <!-- deposit section  -->
-        <div>
+        <div >
             <h1 class="text-danger mt-5">Deposit Money</h1>
            
                 <label for="deposit-input">Deposit Amount:</label>
                 <input type="text" placeholder="enter deposit amount" id="deposit-input"  required>
-                <button class="btn btn-success" type="submit" id="deposit-btn" onclick="deposit()">Deposit</button>
+                <button class="btn btn-success mt-2 mt-md-0 " type="submit" id="deposit-btn" onclick="deposit()">Deposit</button>
+                <p id="error1" class="text-danger d-none">Wrong input ,, try again please</p>
            
 
         </div>
@@ -39,6 +40,9 @@
 
         <div>
             <h1 class="text-danger mt-5">Buy Coins</h1>
+
+            <p id="error2" class="text-danger d-none">Wrong input ,, try again please</p>
+            <p id="error3" class="text-danger d-none">Sorry ,, you don't have enough balance</p>
 
             <div>
                 <label for="bitcoin-input">Buy Bitcoin: </label>

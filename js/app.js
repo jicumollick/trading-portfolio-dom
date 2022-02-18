@@ -1,40 +1,62 @@
-
-
 // writing function for deposit 
 
 function deposit(){
     let depositAmount = parseFloat(document.getElementById('deposit-input').value);
+
+    if(isNaN(depositAmount)){
+        depositAmount = 0;
+        document.getElementById('error1').classList.remove ('d-none');
+        document.getElementById('deposit-input').value = '';
+    }else {
+        document.getElementById('error1').classList.add('d-none');
+        let TotalBalance = parseFloat(document.getElementById('balance').innerText);
+
+        TotalBalance += depositAmount;
     
-    let TotalBalance = parseFloat(document.getElementById('balance').innerText);
+        document.getElementById('balance').innerText = TotalBalance;
+        document.getElementById('deposit-input').value = '';
 
-    TotalBalance += depositAmount;
-
-    document.getElementById('balance').innerText = TotalBalance;
-    document.getElementById('deposit-input').value = '';
-
+    }
+    
+   
 }
 
 function coinCount(coinInput , coin){
-    let bitcoinqty =  parseFloat(document.getElementById(coinInput).value);
+    let coinqty =  parseFloat(document.getElementById(coinInput).value);
+    if(isNaN(coinqty)){
+        coinqty = 0;
+        document.getElementById('error2').classList.remove ('d-none');
+        document.getElementById(coinInput).value = '';
+    }else {
+        document.getElementById('error2').classList.add('d-none');
 
-    let oldBitcoinqty = parseFloat(document.getElementById(coin).innerText);
-    oldBitcoinqty += bitcoinqty;
-    document.getElementById(coin).innerText = oldBitcoinqty;
-
-
+    let coinPrice;
     if(coin == 'bitcoin'){
-     bitcoinPrice = bitcoinqty * 10;
+     coinPrice = coinqty * 10;
     }
     else {
-     bitcoinPrice = bitcoinqty * 5;
-
+     coinPrice = coinqty * 5;
     }
     let TotalBalance = parseFloat(document.getElementById('balance').innerText);
 
-    let newBalance = TotalBalance - bitcoinPrice;
+    // error handling if totalbalance < coinprice 
+    if(TotalBalance < coinPrice){
+        coinPrice = 0;
+        coinqty = 0;
+        document.getElementById('error3').classList.remove ('d-none');
+    }else {
+        document.getElementById('error3').classList.add('d-none');
+    }
+
+    let oldcoinqty = parseFloat(document.getElementById(coin).innerText);
+    oldcoinqty += coinqty;
+    document.getElementById(coin).innerText = oldcoinqty;
+
+    let newBalance = TotalBalance - coinPrice;
     document.getElementById('balance').innerText = newBalance;
 
     document.getElementById(coinInput).value = '';
+    }
 
 }
 
